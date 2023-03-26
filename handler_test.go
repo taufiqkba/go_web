@@ -22,3 +22,28 @@ func TestHandler(t *testing.T) {
 		panic(err)
 	}
 }
+
+func TestServeMux(t *testing.T) {
+	mux := http.NewServeMux() // to create multiple endpoint
+	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
+		fmt.Fprint(writer, "Root Page")
+	})
+	mux.HandleFunc("/hi", func(writer http.ResponseWriter, request *http.Request) {
+		fmt.Fprint(writer, "Hi Page")
+	})
+	mux.HandleFunc("/images/", func(writer http.ResponseWriter, request *http.Request) {
+		fmt.Fprint(writer, "Images Page")
+	})
+	mux.HandleFunc("/images/thumbnails/", func(writer http.ResponseWriter, request *http.Request) {
+		fmt.Fprint(writer, "Thumbnails Page")
+	})
+
+	server := http.Server{
+		Addr:    "localhost:8080",
+		Handler: mux,
+	}
+	err := server.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
+}
