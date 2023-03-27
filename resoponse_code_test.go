@@ -23,10 +23,9 @@ func TestResponseCodeInvalid(t *testing.T) {
 	recorder := httptest.NewRecorder()
 
 	ResponseCode(recorder, request)
-
 	response := recorder.Result()
 	body, _ := io.ReadAll(response.Body)
-	
+
 	fmt.Println(response.StatusCode)
 	fmt.Println(response.Status)
 	fmt.Println(string(body))
@@ -37,7 +36,6 @@ func TestResponseCodeValid(t *testing.T) {
 	recorder := httptest.NewRecorder()
 
 	ResponseCode(recorder, request)
-
 	response := recorder.Result()
 	body, _ := io.ReadAll(response.Body)
 
