@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{.Title}}</title>
+</head>
+<body>
+    <h1>Comparasion Value Operator</h1>
+    {{if ge .FinalValue 80}}
+        <h2>Good Job!</h2>
+    {{else if ge .FinalValue 60}}
+        <h2>Nice Try!</h2>
+    {{else}}
+        <h2>Try Again!</h2>
+    {{end}}
+</body>
+</html>
