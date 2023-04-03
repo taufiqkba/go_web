@@ -60,19 +60,20 @@ func TestUploadForm(t *testing.T) {
 var uploadFileTest []byte
 
 func TestUploadFile(t *testing.T) {
+	//setting filed test
 	body := new(bytes.Buffer)
 	writer := multipart.NewWriter(body)
 	writer.WriteField("name", "Taufiq Kurniawan")
-	file, _ := writer.CreateFormFile("file", "Exampleupload.png")
+	file, _ := writer.CreateFormFile("file", "test-upload.png")
 	file.Write(uploadFileTest)
 	writer.Close()
 
+	//request test
 	request := httptest.NewRequest(http.MethodPost, "http://localhost:80808", body)
 	request.Header.Set("Content-Type", writer.FormDataContentType())
 	recorder := httptest.NewRecorder()
 
 	Upload(recorder, request)
-
 	bodyResponse, _ := io.ReadAll(recorder.Result().Body)
 	fmt.Println(string(bodyResponse))
 }
